@@ -9,6 +9,8 @@ export type Post = {
     path: string;
     featured: boolean;
 }
+export type PostData = Post & {content: string};
+
 export async function getFeaturedPosts(): Promise<Post[]> {
     return getAllPosts()
     .then((posts)=> posts.filter((post)=> post.featured))
@@ -18,6 +20,17 @@ export async function getNonFeaturedPosts(): Promise<Post[]> {
     return getAllPosts()
     .then((posts)=> posts.filter((post)=> !post.featured))
     
+}
+
+export async function getPostData(fileName:string): Promise<PostData> {
+    const filePath = path.join(process.cwd(), 'data','posts', `${fileName}.md`);
+    const metaData = await getAllPosts()
+    .then((post)=> post.find((post)=> post.path === fileName))
+    if(!metaData) throw new Error(`${fileName}에 해당하는 포스트를 찾을 수 없음`)
+
+    const content = await readFile(filePath, 'utf-8');
+
+    return {...metaData, content}
 }
 
 
