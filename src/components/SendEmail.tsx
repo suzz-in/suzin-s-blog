@@ -2,12 +2,19 @@
 // 서버단에 둬야할지 클라이언트 단에 둬야할지 고민..
 import { useForm } from "react-hook-form";
 
+interface Mail {
+    Email: string,
+    subject: string,
+    message: string
+}
 export default function SendEmail() {
-    const {register, handleSubmit, reset, formState:{isSubmitting, isSubmitSuccessful}} = useForm()
+    const {register, handleSubmit, reset, formState:{isSubmitting, isSubmitSuccessful}} = useForm<Mail>()
     
-    const onSubmit = (data) => {
+    const onSubmit = (data: Mail) => {
         console.log(data)
     }
+
+
 
 return (<form  onSubmit={handleSubmit(onSubmit)} className="mx-auto mt-12 w-2/4 h-5/6 bg-slate-600 px-16 py-4 rounded-3xl">
     <p className="text-white">Your Email</p>
