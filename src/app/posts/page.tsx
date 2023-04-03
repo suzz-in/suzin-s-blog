@@ -1,4 +1,8 @@
-export default function Post() {
+import FilterablePosts from "@/components/FilterablePosts";
+import { getAllPosts } from "@/service/posts"
 
-return (<div>글작성</div>)
+export default async function Posts() {
+    const posts = await getAllPosts();
+    const categories = [...new Set(posts.map(post => post.category))]
+return (<FilterablePosts posts={posts} categoires={categories}/>)
 }
