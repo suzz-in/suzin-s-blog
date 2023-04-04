@@ -8,8 +8,14 @@ const sans = Open_Sans({ subsets: ['latin'] })
 
 //SEO설정
 export const metadata = {
-  title: 'Suzin의 블로그',
+  title: {
+    default :"Suzin의 블로그",
+    template: "Suzin의 블로그 | %s"
+  },
   description: 'Suzin, 나의 개인블로그입니다.',
+  icons : {
+    icon : "/favicon.ico"
+  }
 }
 
 export default function RootLayout({

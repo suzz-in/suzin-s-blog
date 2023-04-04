@@ -2,6 +2,12 @@ import { GoMarkGithub } from 'react-icons/go'
 import { SiTistory } from "react-icons/si"
 import { AiFillInstagram } from "react-icons/ai"
 import SendEmail from '@/components/SendEmail'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+    title: "Contact Me",
+    description : "suzin, 나와 연락하기"
+}
 
 const LINKS = [
     { icon : <GoMarkGithub size="45" className='mr-5 mt-1'/>, url: "https://github.com/suzz-in" },

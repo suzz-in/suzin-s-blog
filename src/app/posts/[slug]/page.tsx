@@ -1,6 +1,7 @@
 import AdjacentPostCard from "@/components/AdjacentPostCard";
 import PostContent from "@/components/PostContent";
 import { getAllPosts, getPostData } from "@/service/posts";
+import { Metadata } from "next";
 import Image from "next/image";
 
 type Props = {
@@ -9,6 +10,14 @@ type Props = {
     }
 }
 
+//다이나믹라우트 페이지에서 SEO설정해주기
+export async function generateMetadata({params:{slug}}: Props):Promise<Metadata> {
+    const {title, description}  = await getPostData(slug);
+    return {
+        title,
+        description
+    }
+}
 export default async function page({params:{slug}}: Props) {
     const post  = await getPostData(slug);
     const {path, title, next, prev} = post;
