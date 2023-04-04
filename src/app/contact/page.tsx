@@ -3,6 +3,11 @@ import { SiTistory } from "react-icons/si"
 import { AiFillInstagram } from "react-icons/ai"
 import SendEmail from '@/components/SendEmail'
 
+const LINKS = [
+    { icon : <GoMarkGithub size="45" className='mr-5 mt-1'/>, url: "https://github.com/suzz-in" },
+    { icon : <SiTistory size="35" className='mr-4 mt-2'/>, url: "https://gonggongnote.tistory.com/"},
+    { icon: <AiFillInstagram size="50" className='mr-4'/>, url: "https://www.instagram.com/sujzz__/"},
+]
 export default function Contact() {
 
 return (
@@ -11,13 +16,11 @@ return (
     <h1 className="text-3xl font-bold mb-2">Contact Me !</h1>
     <span >o_o_su_jin_@naver.com</span>
     <div className='flex justify-center mt-4'>
-        <GoMarkGithub size="45" className='mr-5 mt-1'/>
-        <SiTistory size="35" className='mr-4 mt-2'/>
-        <AiFillInstagram size="50" className='mr-4'/>
+        {LINKS.map((link, index)=> <a key={index} href={link.url} target='_blank' rel='noreferrer'>{link.icon}</a>)}
     </div>
     <h1 className="text-3xl font-bold mt-8">Or Send me an email</h1>
     </div>
-    <SendEmail />
+    <SendEmail/>
     </>
 )
 }
